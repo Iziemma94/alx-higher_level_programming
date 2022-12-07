@@ -1,27 +1,23 @@
-#include <Python.h>
-
-/*
- includes listobject.h
- VIEW HEADER-> https://github.com/python/cpython/blob/master/Include/listobject.h
- VIEW MANUAL-> https://docs.python.org/3.4/c-api/list.html
-
- includes object.h
- VIEW HEADER-> https://docs.python.org/3.4/c-api/structures.html)
- VIEW MANUAL-> https://github.com/python/cpython/blob/master/Include/object.h
- */
+#include "/usr/include/python3.4/Python.h"
+#include "/usr/include/python3.4/listobject.h"
+#include "/usr/include/python3.4/object.h"
+#include <stdio.h>
 
 void print_python_list_info(PyObject *p)
 {
-	Py_ssize_t size, alloc, idx;
+	int i = 0, list_len = 0;
+	PyObject *item;
+	PyListObject *clone = (PyListObject *) p;
 
-	size = PyList_Size(p);
-	alloc = ((PyListObject *)p)->allocated;
-	printf("[*] Size of the Python List = %ld\n", size);
-	printf("[*] Allocated = %ld\n", alloc);
-	for (idx = 0; idx < size; idx++)
+	list_len = Py_SIZE(p);
+	printf("[*] Size of the Python List = %d\n", list_len);
+	printf("[*] Allocated = %d\n", (int) clone->allocated);
+
+	for (; i < list_len; ++i)
 	{
-		printf("Element %ld: %s\n",
-			idx,
-			(PY_TYPE(PyList_GetItem(p, idx)))->tp_name);
+		item = PyList_GET_ITEM(p, i);
+		printf("Element %d: %s\n", i, item->ob_type->tp_name);
 	}
+
+	return;
 }
