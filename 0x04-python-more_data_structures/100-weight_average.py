@@ -1,17 +1,14 @@
 #!/usr/bin/python3
-
-
-# weight_average - returns the weighted average of all intergers tuple.
 def weight_average(my_list=[]):
-    if my_list:
-        weight = 0
-        denom = 0
-        avg = 0
-#    print(my_list[0][0])
-        for i in range(len(my_list)):
-            for j in range(len(my_list[i])):
-                weight += my_list[i][0] * my_list[i][1]
-                denom += my_list[i]
-        avg = weight / denom
-        return avg
-    return 0
+    if my_list is not None:
+        total = 0
+        frequency = 0
+        for tup in my_list:
+            (weight, occurence) = tup
+            total += (weight * occurence)
+            frequency += occurence
+        return (total/frequency) if frequency > 0 else 0
+    else:
+        return (0)
+
+# return(sum(a*b for a, b in my_list)/sum(b for a, b in my_list))
