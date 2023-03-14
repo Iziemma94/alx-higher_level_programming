@@ -1,13 +1,7 @@
 #!/usr/bin/node
-
-// Script to add two integers
-
 function add (a, b) {
-  return (a + b);
+  const c = a + b;
+  console.log(c);
 }
 
-if (isNaN(Number(process.argv[2])) || isNaN(Number(process.argv[3]))) {
-  console.log('NaN');
-} else {
-  console.log(add(parseInt(process.argv[2]), parseInt(process.argv[3])));
-}
+add(Number(process.argv[2]), Number(process.argv[3]));
