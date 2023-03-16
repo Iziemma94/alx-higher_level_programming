@@ -1,13 +1,9 @@
 #!/usr/bin/node
 
-// Script to print ints passed as arguments to the script.
+const { argv } = require('process');
+const num = parseInt(argv[2]);
+const printC = (cuantity) => {
+  for (; cuantity > 0; cuantity--) console.log('C is fun');
+};
 
-const myArg = process.argv[2];
-
-if (isNaN(Number(myArg))) {
-  console.log('Missing number of occurences');
-} else {
-  for (let i = 0; i < myArg; i++) {
-    console.log('C is fun');
-  }
-}
+Number.isInteger(num) ? printC(num) : console.log('Missing number of occurrences');

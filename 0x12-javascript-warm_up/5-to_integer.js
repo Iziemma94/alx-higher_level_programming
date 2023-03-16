@@ -1,11 +1,6 @@
 #!/usr/bin/node
 
-// Script to print ints passed as arguments to the script.
+const { argv } = require('process');
+const num = parseInt(argv[2]);
 
-const myArg = process.argv[2];
-
-if (isNaN(Number(myArg))) {
-  console.log('Not a number');
-} else {
-  console.log('My number: ' + myArg);
-}
+console.log(Number.isInteger(num) ? `My number: ${num}` : 'Not a number');
